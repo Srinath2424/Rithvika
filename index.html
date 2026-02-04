@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Rithvika 🤍</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    background: radial-gradient(circle at top, #1a001a, #000);
+    font-family: Georgia, serif;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* ---------- SECTIONS ---------- */
+section{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:50px 20px;
+    position:relative;
+    z-index:10;
+}
+
+h1{font-size:3.8rem;letter-spacing:4px;margin-bottom:20px;}
+h2{font-size:2.6rem;margin-bottom:20px;}
+p{font-size:1.35rem;line-height:1.9;max-width:900px;}
+
+/* ---------- BUTTONS ---------- */
+button{
+    margin:20px;
+    padding:16px 50px;
+    font-size:1rem;
+    letter-spacing:3px;
+    border:2px solid #ffb3d9;
+    background:rgba(0,0,0,0.4);
+    color:#ffb3d9;
+    cursor:pointer;
+    transition:.4s;
+    z-index:20;
+}
+button:hover{
+    background:#ffb3d9;
+    color:black;
+    box-shadow:0 0 30px #ffb3d9;
+}
+
+.glow{text-shadow:0 0 20px #ffb3d9,0 0 40px #ff80bf;}
+
+/* ---------- HEART RAIN ---------- */
+.heart{
+    position:fixed;
+    bottom:-30px;
+    font-size:24px;
+    animation:floatUp linear infinite;
+    opacity:.9;
+    z-index:1;
+    pointer-events:none;
+}
+@keyframes floatUp{
+    from{transform:translateY(0);opacity:0;}
+    10%{opacity:1;}
+    to{transform:translateY(-120vh);opacity:0;}
+}
+
+/* ---------- FLOATING IMAGES ---------- */
+.float-img{
+    position:fixed;
+    bottom:-150px;
+    width:150px;
+    height:150px;
+    object-fit:cover;
+    border-radius:15px;
+    animation:floatUp 6s linear forwards;
+    z-index:50;
+    box-shadow:0 0 25px rgba(255,255,255,.6);
+    pointer-events:none;
+}
+.draco{border:3px solid #2a623d;}
+
+/* ---------- CHOCOLATE DRIP (PURE CSS) ---------- */
+#chocolate{
+    position:fixed;
+    top:-120%;
+    left:0;
+    width:100vw;
+    height:120vh;
+    background:linear-gradient(
+        to bottom,
+        #3b1f0f 0%,
+        #5a2c14 25%,
+        #3b1f0f 45%,
+        #000 100%
+    );
+    clip-path:polygon(
+        0 0,100% 0,100% 40%,
+        90% 48%,80% 42%,70% 50%,
+        60% 44%,50% 52%,40% 45%,
+        30% 53%,20% 46%,10% 54%,0 48%
+    );
+    z-index:999;
+    transition:top 2.5s ease;
+    pointer-events:none;
+}
+.choco-on{top:0;}
+
+/* ---------- EXPLOSIONS ---------- */
+.burst{
+    position:absolute;
+    font-size:26px;
+    animation:burst 1.5s ease-out forwards;
+    pointer-events:none;
+}
+@keyframes burst{
+    from{transform:scale(0);opacity:1;}
+    to{transform:translate(var(--x),var(--y)) scale(1.5);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div id="chocolate"></div>
+
+<section>
+    <h1 class="glow">For Someone Special 🤍</h1>
+    <p>This page was made with patience, care, and love.</p>
+    <button onclick="scrollTo('name')">Begin</button>
+</section>
+
+<section id="name">
+    <h1 class="glow">Rithvika 🤍</h1>
+    <p>Some names don’t just sound beautiful. They feel like home.</p>
+    <button onclick="scrollTo('favorites')">See What I Know</button>
+</section>
+
+<section id="favorites">
+    <h2 class="glow">Things You Love</h2>
+    <button onclick="spawnDogs()">🐶 Puppies</button>
+    <button onclick="spawnDraco()">🐍 Draco</button>
+    <button onclick="chocolate()">🍫 Sweet</button>
+    <button onclick="loveStorm()">💖 LOTS of Love</button>
+    <button onclick="scrollTo('letter')">Read My Heart</button>
+</section>
+
+<section id="letter">
+    <h2>A Love Letter</h2>
+    <p id="type"></p>
+    <button onclick="scrollTo('final')">Forever</button>
+</section>
+
+<section id="final">
+    <h2 class="glow">I Love You Forever and Ever 🤍</h2>
+    <p>Not loudly. Not briefly. But deeply. Always.</p>
+</section>
+
+<audio autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2022/10/30/audio_7c29c93a5b.mp3">
+</audio>
+
+<script>
+/* ---------- TYPEWRITER ---------- */
+const msg = `
+Loving you became natural,
+like breathing.
+
+You make ordinary days warm,
+and hard days lighter.
+
+I don’t want perfection.
+I want us.
+
+I Love You Forever and Ever.
+`;
+let i=0;
+function type(){
+    if(i<msg.length){
+        document.getElementById("type").innerHTML+=msg.charAt(i);
+        i++;
+        setTimeout(type,40);
+    }
+}
+type();
+
+/* ---------- SCROLL ---------- */
+function scrollTo(id){
+    document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+/* ---------- HEART RAIN (VERY DENSE) ---------- */
+setInterval(()=>{
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML=Math.random()>0.5?"🤍":"💖";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=Math.random()*26+18+"px";
+    h.style.animationDuration=Math.random()*3+4+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),8000);
+},90);
+
+/* ---------- DOG BREEDS ---------- */
+const dogs=[
+ "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=400",
+ "https://images.unsplash.com/photo-1601758064130-1a87f8b4c38d?auto=format&fit=crop&w=400",
+ "https://images.unsplash.com/photo-1619983081563-430f63602796?auto=format&fit=crop&w=400",
+ "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=400",
+ "https://images.unsplash.com/photo-1583511655936-2e5d8f8e6b9c?auto=format&fit=crop&w=400"
+];
+
+function spawnDogs(){
+    for(let i=0;i<10;i++){
+        setTimeout(()=>{
+            let img=document.createElement("img");
+            img.src=dogs[Math.floor(Math.random()*dogs.length)];
+            img.className="float-img";
+            img.style.left=Math.random()*80+10+"vw";
+            document.body.appendChild(img);
+            setTimeout(()=>img.remove(),6000);
+        },i*250);
+    }
+}
+
+/* ---------- DRACO MALFOY ---------- */
+const draco=[
+ "https://upload.wikimedia.org/wikipedia/en/1/16/Draco_Mal.JPG",
+ "https://upload.wikimedia.org/wikipedia/commons/4/4d/Tom_Felton_2011_San_Diego_Comic_Con_Crop.jpg",
+ "https://upload.wikimedia.org/wikipedia/commons/6/63/Tom_Felton_2012.jpg",
+ "https://upload.wikimedia.org/wikipedia/commons/0/0c/Tom_Felton_2019.jpg"
+];
+
+function spawnDraco(){
+    for(let i=0;i<6;i++){
+        setTimeout(()=>{
+            let img=document.createElement("img");
+            img.src=draco[Math.floor(Math.random()*draco.length)];
+            img.className="float-img draco";
+            img.style.left=Math.random()*80+10+"vw";
+            document.body.appendChild(img);
+            setTimeout(()=>img.remove(),6000);
+        },i*400);
+    }
+}
+
+/* ---------- CHOCOLATE ---------- */
+function chocolate(){
+    const c=document.getElementById("chocolate");
+    c.classList.add("choco-on");
+    setTimeout(()=>c.classList.remove("choco-on"),4000);
+}
+
+/* ---------- LOVE STORM ---------- */
+function loveStorm(){
+    for(let i=0;i<120;i++){
+        let b=document.createElement("div");
+        b.className="burst";
+        b.innerHTML="💖";
+        b.style.left=window.innerWidth/2+"px";
+        b.style.top=window.scrollY+window.innerHeight/2+"px";
+        b.style.setProperty("--x",(Math.random()*800-400)+"px");
+        b.style.setProperty("--y",(Math.random()*800-400)+"px");
+        document.body.appendChild(b);
+        setTimeout(()=>b.remove(),1500);
+    }
+}
+</script>
+
+</body>
+</html>
